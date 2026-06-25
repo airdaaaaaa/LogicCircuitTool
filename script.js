@@ -2,52 +2,46 @@ const canvas = document.getElementById("canvas");
 
 function addGate(type){
 
-```
-const gate = document.createElement("div");
+    const gate = document.createElement("div");
 
-gate.className = "gate";
-gate.innerText = type;
+    gate.className = "gate";
+    gate.innerText = type;
 
-gate.style.left = "100px";
-gate.style.top = "100px";
+    gate.style.left = "100px";
+    gate.style.top = "100px";
 
-canvas.appendChild(gate);
+    canvas.appendChild(gate);
 
-makeDraggable(gate);
-```
-
+    makeDraggable(gate);
 }
 
 function makeDraggable(element){
 
-```
-let offsetX = 0;
-let offsetY = 0;
-let dragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+    let dragging = false;
 
-element.addEventListener("mousedown",(e)=>{
+    element.addEventListener("mousedown",(e)=>{
 
-    dragging = true;
+        dragging = true;
 
-    offsetX = e.offsetX;
-    offsetY = e.offsetY;
-});
+        offsetX = e.offsetX;
+        offsetY = e.offsetY;
+    });
 
-document.addEventListener("mousemove",(e)=>{
+    document.addEventListener("mousemove",(e)=>{
 
-    if(!dragging) return;
+        if(!dragging) return;
 
-    element.style.left =
-        (e.pageX - canvas.offsetLeft - offsetX) + "px";
+        element.style.left =
+            (e.pageX - canvas.offsetLeft - offsetX) + "px";
 
-    element.style.top =
-        (e.pageY - canvas.offsetTop - offsetY) + "px";
-});
+        element.style.top =
+            (e.pageY - canvas.offsetTop - offsetY) + "px";
+    });
 
-document.addEventListener("mouseup",()=>{
+    document.addEventListener("mouseup",()=>{
 
-    dragging = false;
-});
-```
-
+        dragging = false;
+    });
 }
