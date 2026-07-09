@@ -1,60 +1,50 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Logic Circuit Tool</title>
-
-<style>
-body{
-    margin:0;
-    font-family:sans-serif;
-}
-
-.toolbar{
-    padding:10px;
-    background:#eee;
-}
-
-button{
-    margin-right:5px;
-}
-
-#canvas{
-    width:100%;
-    height:90vh;
-    background:white;
-    position:relative;
-    overflow:hidden;
-}
-
-.gate{
-    width:80px;
-    height:50px;
-    border:2px solid black;
-    position:absolute;
-    cursor:move;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:white;
-}
-</style>
-
+    <meta charset="UTF-8">
+    <title>Logic Gate Editor</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="toolbar">
-    <button onclick="addGate('AND')">AND</button>
-    <button onclick="addGate('OR')">OR</button>
-    <button onclick="addGate('NOT')">NOT</button>
-</div>
+    <div id="toolbar">
+        <button onclick="addGate('AND')">AND</button>
+        <button onclick="addGate('OR')">OR</button>
+        <button onclick="addGate('NOT')">NOT</button>
+        <button onclick="addGate('NAND')">NAND</button>
+        <button onclick="addGate('NOR')">NOR</button>
+        <button onclick="addGate('XOR')">XOR</button>
+        <button onclick="addGate('JUNCTION')">黒丸</button>
+        <button onclick="addGate('WHITE_JUNCTION')">白丸</button>
+        <button onclick="addGate('OR_ARC')">接続部拡張</button>
+        <button onclick="addGate('TEXT')">テキスト</button>
+        <button onclick="startLineTool()">線を引く</button>
+        <button onclick="showHelp()" style="margin-left: auto; background-color: #e3f2fd; border-color: #90caf9;">使用方法</button>
+    </div>
 
-<div id="canvas"></div>
+    <div id="canvas">
+        <svg id="svgLayer"></svg>
+    </div>
 
-<script src="script.js"></script>
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeHelp()">&times;</span>
+            <h2>使用方法</h2>
+            <ul>
+                <li><strong>素子の追加:</strong> 上部のボタンを押すとキャンバスに追加されます。</li>
+                <li><strong>移動:</strong> 素子をドラッグして移動できます。</li>
+                <li><strong>リサイズ:</strong> 選択時に右下に出る青い丸をドラッグすると大きさを変えられます。</li>
+                <li><strong>線を引く:</strong> 「線を引く」ボタンを押し、キャンバス上をドラッグします。<br>
+                    <span style="color: #666; font-size: 0.9em;">※ <code>Shift</code>キーを押しながらで水平、<code>Ctrl</code>キーで垂直に線を引けます。</span>
+                </li>
+                <li><strong>線の変形:</strong> 線を選択し、両端の白い丸をドラッグすると位置を修正できます。</li>
+                <li><strong>削除:</strong> 素子や線を選択し、<code>Delete</code> または <code>Backspace</code> キーで削除します。</li>
+                <li><strong>コピー:</strong> 素子や線を選択し、<code>Space</code> キーを押すと複製されます。</li>
+                <li><strong>テキスト:</strong> 「テキスト」を追加後、文字部分をクリックして直接入力できます。</li>
+            </ul>
+        </div>
+    </div>
 
+    <script src="script.js"></script>
 </body>
 </html>
